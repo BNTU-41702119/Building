@@ -1,20 +1,82 @@
-// Building.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+
+using namespace std;
+
+class Building
+{
+    int floors;
+    int totalRooms;
+    int totalRoomsArea;
+
+public:
+    Building()
+    {
+        floors = 1;
+        totalRooms = 1;
+        totalRoomsArea = 1;
+    }
+    Building(int floors, int totalRooms, int totalRoomsArea)
+    {
+        this->floors = floors;
+        this->totalRooms = totalRooms;
+        this->totalRoomsArea = totalRoomsArea;
+    }
+
+public:
+    int getTotalRooms()
+    {
+        return totalRooms;
+    }
+};
+
+class House : public Building
+{
+    int bathrooms;
+    int bedrooms;
+
+public:
+    House(int bathrooms, int bedrooms) : Building(1, bathrooms + bedrooms, 1)
+    {
+        this->bathrooms = bathrooms;
+        this->bedrooms = bedrooms;
+    }
+
+public:
+    int getBathrooms()
+    {
+        return bathrooms;
+    }
+};
+
+class Office : public Building
+{
+    int extinguishersCount;
+    int phonesCount;
+
+public:
+    Office(int extinguishersCount, int phonesCount)
+    {
+        this->extinguishersCount = extinguishersCount;
+        this->phonesCount = phonesCount;
+    }
+
+public:
+    int getExtinguishersCount()
+    {
+        return extinguishersCount;
+    }
+};
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    Building building = Building(1, 1, 1);
+    cout << building.getTotalRooms() << endl;
+
+    House house = House(1, 1);
+    cout << house.getBathrooms() << endl;
+    cout << house.getTotalRooms() << endl;
+
+    Office office = Office(1, 1);
+    cout << office.getExtinguishersCount() << endl;
+    cout << office.getTotalRooms() << endl;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
